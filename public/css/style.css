@@ -1,0 +1,382 @@
+body {
+    font-family: "Montserrat", sans-serif;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    overflow-x: hidden;
+}
+
+section.main {
+    margin-left: 300px;
+}
+
+section.main > *:not(div.search-bar-container) {
+    margin: 0 70px; 
+}
+
+.new-books-container {
+    display: grid;
+    grid-template-columns : repeat(9, 1fr) ;
+    column-gap: 122px;
+    row-gap: 70px;
+    width: calc(100vw - 300px - 70px * 2);
+    padding: 15px 0 15px 15px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.new-books-container .book-container {
+    cursor: pointer;
+    display: flex;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    width: 350px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: white;
+    padding: 30px;
+}
+
+.new-books-container .book-container img {
+    width: 120px;
+    height: auto;
+    object-fit: cover;
+}
+
+.new-books-container .book-container .book-inf {
+    padding: 20px;
+}
+
+.new-books-container .book-container .book-inf .book-name {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.new-books-container .book-container .book-inf .book-author {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #ccc;
+}
+
+section.for-you {
+    overflow: hidden;
+}
+
+.control-panel{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-left: 15px;
+}
+
+.navigation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.navigation .counter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navigation button {
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+}
+
+.navigation button svg {
+    width: 20px;
+    height: 20px;
+}
+
+.navigation .counter svg {
+    width: 30px;
+    height: 30px;
+}
+
+svg {
+    transition: fill 0.2s ease-in-out;
+}
+
+.navigation button svg:not(svg.active),
+.navigation .counter svg:not(svg.active) {
+    fill:  rgb(185, 185, 185);
+}
+
+svg.active {
+    fill:  #000;
+}
+
+.navigation button:disabled {
+    cursor: default;
+}
+
+section.for-you .for-you-container {
+    display: grid;
+    grid-template-columns : repeat(12, 1fr) ;
+    grid-template-rows : repeat(2, 1fr) ; 
+    column-gap: 95px;
+    row-gap: 70px;
+    width: calc(100vw - 300px - 70px * 2);
+    padding: 15px 0 15px 15px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.book-container {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    transition: opacity 0.3s ease, transform 0.2s ease-in-out;
+}
+
+.book-container.hidden {
+    display: none;
+}
+
+.book-container:hover {
+    transform: scale(1.01);
+}
+
+.book-container img {
+    width: 130px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.book-container .book-inf {
+    padding-top: 5px;
+}
+
+.book-container .book-inf h3 {
+    margin: 0;
+    margin-bottom: 5px;
+    width: 150px; 
+    white-space: nowrap;
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    font-size: 16px;
+}
+
+.book-container .book-inf p {
+    margin: 0;
+    color: rgb(185, 185, 185);
+    font-size: 15px;
+}
+
+.rating {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: start;
+    gap: 3px;
+}
+
+.rating .rating-item {
+    font-size: 20px;
+    transition: 0.2s;
+}
+
+.rating[data-total-value='1'] .rating-item:nth-child(n + 5),
+.rating[data-total-value='2'] .rating-item:nth-child(n + 4),
+.rating[data-total-value='3'] .rating-item:nth-child(n + 3),
+.rating[data-total-value='4'] .rating-item:nth-child(n + 2),
+.rating[data-total-value='5'] .rating-item:nth-child(n + 1) {
+    color: orange;
+}
+
+.filter {
+    position: relative;
+}
+
+.filter .control {
+    display: flex;
+    gap: 5px;
+}
+
+.filter .control h3 {
+    margin: 0;
+}
+
+.filter .control button {
+    border: none;
+    background-color: transparent;
+    padding: 0;
+    cursor: pointer;
+}
+
+.filter .control button svg {
+    width: 15px;
+    height: 15px;
+    transform: rotate(-90deg);
+    transition: transform 0.3s ease;
+}
+
+.filter .control button svg.rotated {
+    transform: rotate(90deg);
+}
+
+.filter .dropdown-menu {
+    top: 100%;
+    right: 0;
+}
+
+section.my-books .my-books-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 95px;
+    row-gap: 70px;
+    width: calc(100vw - 300px - 70px * 2);
+    padding: 15px 0 15px 15px;
+}
+
+section.book-detail .book-detail-container {
+    width: calc(100vw - 300px - 70px * 2);
+    padding: 15px 0 15px 15px;
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    column-gap: 50px;
+}
+
+section.book-detail .book-detail-container .book-detail-info {
+    width: 100%;
+}
+
+section.book-detail .book-detail-container .control {
+    display: flex;
+    width: 300px;
+    flex-direction: column;
+    gap: 20px;
+}
+
+section.book-detail .book-detail-container .control img {
+    width: 300px;
+    max-height: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    margin-top: 40px;
+}
+
+section.book-detail .book-detail-container h1 {
+    font-size: 40px;
+    margin-bottom: 0;
+}
+
+section.book-detail .book-detail-container h2 {
+    color:  rgb(185, 185, 185);
+}
+
+section.book-detail .book-detail-container .rating .rating-item {
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.book-detail-info .discription {
+    width: 100%;
+}
+
+.book-detail-info .discription p {
+    font-size: 25px;
+    font-weight: 500;
+    color: #000;
+}
+
+.buttons button,
+.my-book-buttons button {
+    font-family: "Montserrat", sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    width: 100%;
+    padding: 10px;
+    border: 2px solid transparent;
+    background-color: #363e56;
+    color:  #fff;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border 0.2s ease-in-out;
+}
+
+.buttons button:hover,
+.my-book-buttons button:hover {
+    background-color: transparent;
+    color:  #363e56;
+    border: 2px solid #363e56;
+}
+
+.buttons button:disabled {
+    background-color:  #fff;
+    color:  #363e56;
+    border: 2px solid #363e56;
+    cursor: default;
+}
+
+.my-book-buttons {
+    position: relative;
+    z-index: 999;
+}
+
+.my-book-buttons button {
+    font-size: 15px;
+    margin-top: 10px;
+    font-weight: 400;
+    padding: 5px;
+}
+
+#book-delete {
+    background-color: #dc143c;
+    color: #363e56;
+}
+
+#book-delete:hover {
+    background-color: transparent;
+    border: 2px solid #dc143c;
+}
+
+.category-dropdown {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    padding: 10px;
+    width: calc(100% - 20px);
+    z-index: 10;
+    height: 100px;
+    display: none;
+}
+
+.category-dropdown.show {
+    display: flex;
+}
+
+.category-dropdown ul {
+    display: flex;
+}
+
+.book-cover-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.category-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 10;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.category-icon svg {
+    width: 24px;
+    height: 24px;
+    fill: #363e56;
+}

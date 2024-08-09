@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MyLibrary</title>
+    <link rel="stylesheet" type="text/css" href="/css/header.css">
+    <link rel="stylesheet" type="text/css" href="/css/search-bar.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <%- include('partials/header') %>
+
+    <section class="main">
+        <%- include('partials/search-bar') %>
+
+        <section class="my-books">
+            <div class="control-panel">
+                <h2 class="title">Young Adult</h2>
+            </div>
+            <div class="my-books-container">
+                <% books.forEach(book => { %>
+                    <div class="book-container" data-book-id="<%= book.title %>">
+                        <img src="https://covers.openlibrary.org/b/id/<%= book.cover_id %>-M.jpg" alt="" class="book-img">
+                        <div class="book-inf">
+                            <h3 class="book-name"> <%= book.title %> </h3>
+                            <p class="book-author"> <%= book.author_name %> </p>
+                            <div class="rating" data-total-value="<%= parseFloat(book.ratings_average).toFixed(0) %>">
+                                <div class="rating-item" data-item-value="5">★</div>
+                                <div class="rating-item" data-item-value="4">★</div>
+                                <div class="rating-item" data-item-value="3">★</div>
+                                <div class="rating-item" data-item-value="2">★</div>
+                                <div class="rating-item" data-item-value="1">★</div>
+                            </div>
+                        </div>
+                    </div>
+                <% }); %>
+            </div>
+        </section>
+    </section>
+
+    <script src="/js/header.js"></script>
+    <script src="/js/book-page.js"></script>
+    <script src="/js/search.js"></script>
+</body>
+</html>

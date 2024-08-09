@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= book.title %> - MyLibrary</title>
+    <link rel="stylesheet" type="text/css" href="/css/header.css">
+    <link rel="stylesheet" type="text/css" href="/css/search-bar.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;900&family=Playfair+Display:wght@400;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <%- include('partials/header') %>
+
+    <section class="main">
+        <%- include('partials/search-bar') %>
+
+        <section class="book-detail">
+            <div class="book-detail-container">
+                <div class="control">
+                    <img src="https://covers.openlibrary.org/b/id/<%= book.cover_i %>-M.jpg" alt="<%= book.title %> cover" class="book-detail-img">
+                    <div class="buttons">
+                        <button id="add-to-my-books"
+                            <%= !isAuthenticated || isInUserList ? 'disabled' : '' %>
+                            data-book='<%= JSON.stringify({
+                                title: book.title,
+                                author_name: book.author_name,
+                                cover_url: `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`,
+                                rating: parseFloat(book.ratings_average).toFixed(0)
+                            }) %>'>Add To My Books</button>
+                    </div>
+                </div>
+                <div class="book-detail-info">
+                    <h1 class="book-detail-title"> <%= book.title %> </h1>
+                    <h2 class="book-detail-author"> <%= book.author_name %> </h2>
+                    <div class="rating" data-total-value="<%= parseFloat(book.ratings_average).toFixed(0) %>">
+                        <div class="rating-item" data-item-value="5">★</div>
+                        <div class="rating-item" data-item-value="4">★</div>
+                        <div class="rating-item" data-item-value="3">★</div>
+                        <div class="rating-item" data-item-value="2">★</div>
+                        <div class="rating-item" data-item-value="1">★</div>
+                    </div>
+                    <div class="discription">
+                        <p>
+                            <%= description %>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <script src="/js/header.js"></script>
+    <script src="/js/book-detail.js"></script>
+    <script src="/js/search.js"></script>
+</body>
+</html>
